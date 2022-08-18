@@ -20,36 +20,36 @@ import com.example.api_rest.service.CajaServiceImpl;
 public class CajaController {
 	
 	@Autowired
-	CajaServiceImpl empleadoServiceImpl;
+	CajaServiceImpl cajaServiceImpl;
 	
 	@GetMapping("/cajas")
 	public List<Caja> listarCajas(){
-		return empleadoServiceImpl.listarCajas();
+		return cajaServiceImpl.listarCajas();
 	}
 	
 	@GetMapping("/cajas/{numreferencia}")
 	public Caja cajaXID(@PathVariable(name="numreferencia") String numReferencia) {
-		return empleadoServiceImpl.cajaXID(numReferencia);
+		return cajaServiceImpl.cajaXID(numReferencia);
 	}
 	
 	@PostMapping("/cajas")
 	public Caja guardarCaja(@RequestBody Caja caja) {
-		return empleadoServiceImpl.guardarCaja(caja);
+		return cajaServiceImpl.guardarCaja(caja);
 	}
 	
 	@PutMapping("/cajas/{numreferencia}")
 	public Caja actualizarCaja(@PathVariable(name="numreferencia")String numReferencia, @RequestBody Caja caja) {
-		Caja cajaActualizado = empleadoServiceImpl.cajaXID(numReferencia);
+		Caja cajaActualizado = cajaServiceImpl.cajaXID(numReferencia);
 		
 		cajaActualizado.setContenido(caja.getContenido());
 		cajaActualizado.setValor(caja.getValor());
 		cajaActualizado.setAlmacen(caja.getAlmacen());
 		
-		return empleadoServiceImpl.actualizarCaja(cajaActualizado);
+		return cajaServiceImpl.actualizarCaja(cajaActualizado);
 	}
 	
 	@DeleteMapping("/cajas/{numreferencia}")
 	public void eliminarCaja(@PathVariable(name="numreferencia")String numReferencia) {
-		empleadoServiceImpl.eliminarCaja(numReferencia);
+		cajaServiceImpl.eliminarCaja(numReferencia);
 	}
 }
